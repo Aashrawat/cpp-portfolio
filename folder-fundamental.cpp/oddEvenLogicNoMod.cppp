@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int main(void){
+
+int number;
+  //Bitwise Operator
+  cout<<"Enter a number:";
+  cin>>number;
+  if(number & 1){
+    cout<<"The number is odd";
+  }
+  else{
+    cout<<"The number is even"
+  }
+  return 0;
+}
+
+//No bitwise no modulus
+
+if((number/2)*2==number){
+cout<<"The number is even"<<endl;;
+else{
+  cout<<"The number is odd"<<endl;
+}
