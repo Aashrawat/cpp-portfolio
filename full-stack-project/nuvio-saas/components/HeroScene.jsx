@@ -23,51 +23,16 @@ function getSceneLayout(width, height, variant) {
     };
   }
 
-  if (width < 400) {
-    return {
-      cameraZ: 6.6,
-      cameraX: 0,
-      lookAt: [0, 0, 0],
-      fov: 46,
-      globePosition: [0, -0.05, 0],
-      globeScale: 0.56,
-      pointSize: 0.012,
-    };
-  }
-
-  if (width < 520) {
-    return {
-      cameraZ: 6.5,
-      cameraX: 0,
-      lookAt: [0, 0, 0],
-      fov: 45,
-      globePosition: [0, -0.05, 0],
-      globeScale: 0.58,
-      pointSize: 0.013,
-    };
-  }
-
-  if (width < 768) {
-    return {
-      cameraZ: 6.4,
-      cameraX: 0,
-      lookAt: [0, 0, 0],
-      fov: 44,
-      globePosition: [0, 0, 0],
-      globeScale: 0.6,
-      pointSize: 0.014,
-    };
-  }
-
   if (width < 900) {
+    const scale = Math.min(0.64, Math.max(0.5, width / 640));
     return {
-      cameraZ: 6.3,
+      cameraZ: 6.9,
       cameraX: 0,
       lookAt: [0, 0, 0],
-      fov: 44,
+      fov: 48,
       globePosition: [0, 0, 0],
-      globeScale: 0.62,
-      pointSize: 0.014,
+      globeScale: scale,
+      pointSize: 0.015,
     };
   }
 
@@ -321,10 +286,10 @@ function PointGlobe() {
       </bufferGeometry>
       <pointsMaterial
         size={pointSize}
-        color="#e8f1ff"
+        color="#f0f6ff"
         sizeAttenuation
         transparent
-        opacity={0.9}
+        opacity={0.95}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
       />
@@ -446,6 +411,7 @@ function ResponsiveCamera() {
 
     camera.position.z = THREE.MathUtils.lerp(camera.position.z, cameraZ, 0.08);
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, cameraX, 0.08);
+    camera.position.y = THREE.MathUtils.lerp(camera.position.y, look[1], 0.08);
     camera.lookAt(look[0], look[1], look[2]);
   });
 

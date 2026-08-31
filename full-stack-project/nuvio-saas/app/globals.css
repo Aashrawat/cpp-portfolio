@@ -331,51 +331,75 @@ a {
   }
 
   .hero-3d__scene {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: clamp(13.5rem, 36vh, 20rem);
+    inset: 0;
+    height: auto;
     opacity: 1;
     background: radial-gradient(
-      ellipse 72% 68% at 50% 52%,
-      rgba(40, 100, 180, 0.22),
-      transparent 72%
+      ellipse 72% 52% at 50% 50%,
+      rgba(40, 100, 180, 0.34),
+      transparent 68%
     );
-    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 28%);
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .hero-3d__layout {
     justify-content: flex-start;
     align-content: start;
     min-height: auto;
-    flex: 1 1 auto;
-    padding-top: clamp(4.25rem, 10vh, 5.5rem);
-    padding-bottom: clamp(13.5rem, 36vh, 20rem);
-    background: linear-gradient(
-      180deg,
-      #040912 0%,
-      #040912 72%,
-      rgba(4, 9, 18, 0.98) 88%,
-      transparent 100%
-    );
+    padding-top: clamp(4rem, 9vh, 5rem);
+    padding-bottom: 0;
+    background: none;
+    pointer-events: none;
   }
 
   .hero-3d__content {
     max-width: 100%;
     position: relative;
     z-index: 2;
+    pointer-events: auto;
+    padding-bottom: 0.5rem;
+    background: linear-gradient(
+      180deg,
+      rgba(4, 9, 18, 0.97) 0%,
+      rgba(4, 9, 18, 0.88) 70%,
+      transparent 100%
+    );
+  }
+
+  .hero-3d__brand {
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-3d__headline {
+    font-size: clamp(1.1rem, 4.2vw, 1.45rem);
+    margin-bottom: 0.55rem;
+  }
+
+  .hero-3d__sub {
+    font-size: clamp(0.88rem, 2.4vw, 0.98rem);
+    margin-bottom: 0.85rem;
+    max-width: 22rem;
+  }
+
+  .hero-3d__form {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-3d__welcome {
+    font-size: clamp(1rem, 3.2vw, 1.2rem);
+    min-height: 2.2rem;
   }
 }
 
 @media (max-width: 519px) {
   .hero-3d__scene {
-    height: clamp(12rem, 34vh, 17rem);
-  }
-
-  .hero-3d__layout {
-    padding-bottom: clamp(12rem, 34vh, 17rem);
+    background: radial-gradient(
+      ellipse 78% 48% at 50% 52%,
+      rgba(40, 100, 180, 0.32),
+      transparent 70%
+    );
   }
 }
 
