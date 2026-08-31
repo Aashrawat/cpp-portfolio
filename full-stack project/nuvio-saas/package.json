@@ -9,6 +9,12 @@
     "build": "next build",
     "start": "next start -p 8080"
   },
+  "engines": {
+    "node": ">=20"
+  },
+  "allowScripts": {
+    "sharp": true
+  },
   "dependencies": {
     "@react-three/drei": "^10.7.8",
     "@react-three/fiber": "^9.7.0",
@@ -19,6 +25,7 @@
     "openai": "^7.4.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "sharp": "^0.34.5",
     "stripe": "^22.5.0",
     "three": "^0.185.1",
     "zod": "^4.4.3"
