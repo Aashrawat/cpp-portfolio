@@ -1,0 +1,206 @@
+import { extraImages } from "./catalogMore";
+import { extraImages2 } from "./catalogNewCategories";
+
+const productImages = {
+  "apple-iphone-16-pro-256gb":
+    "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop",
+  "samsung-galaxy-s25-ultra":
+    "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600&h=600&fit=crop",
+  "macbook-air-15-m4":
+    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=600&fit=crop",
+  "dell-xps-13":
+    "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=600&fit=crop",
+  "sony-wh-1000xm6":
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop",
+  "logitech-mx-master-3s":
+    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&h=600&fit=crop",
+  "samsung-32-smart-monitor":
+    "https://images.unsplash.com/photo-1614624532983-4ce03382d63d?w=600&h=600&fit=crop",
+  "asus-rog-gaming-laptop":
+    "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&h=600&fit=crop",
+  "gopro-hero13-black":
+    "https://media.gadgetbytenepal.com/2024/09/GoPro-Hero-13-Black-Design.jpg",
+  "dji-mini-4-pro-drone":
+    "https://images.unsplash.com/photo-1506947411487-a56738267384?w=600&h=600&fit=crop",
+  "mechanical-rgb-gaming-keyboard":
+    "https://m.media-amazon.com/images/I/81L4FpeS3VL._AC_SL1500_.jpg",
+  "32gb-ddr5-ram-kit":
+    "https://images.unsplash.com/photo-1562976540-1502c2145186?w=600&h=600&fit=crop",
+  "2tb-nvme-gen4-ssd":
+    "https://asset.conrad.com/media10/isa/160267/c1/-/en/001910196PI05/image.jpg",
+  "4k-webcam":
+    "https://www.pcworld.com/wp-content/uploads/2023/04/high_resolution-babylon-fob-100720507-orig-1.jpg?quality=50&strip=all",
+  "usb-c-docking-station":
+    "https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2024/01/plugable-usb-c-dual-hdmi-docking-station-ud-msth2.jpg",
+  "premium-mens-cotton-tshirt":
+    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop",
+  "slim-fit-denim-jeans":
+    "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=600&fit=crop",
+  "waterproof-winter-jacket":
+    "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600&h=600&fit=crop",
+  "running-shoes":
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+  "genuine-leather-wallet":
+    "https://i.pinimg.com/originals/dc/43/11/dc43118006328bbc33a42c07a0116540.jpg",
+  "luxury-automatic-watch":
+    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop",
+  "smart-air-fryer-8l":
+    "https://static0.makeuseofimages.com/wordpress/wp-content/uploads/2022/02/COSORI-air-fryer-1.jpg",
+  "stainless-steel-cookware-set":
+    "https://www.vikingculinaryproducts.com/cdn/shop/collections/4515-1S10S_LS_02.jpg?v=1722994076&width=5235",
+  "robot-vacuum-cleaner":
+    "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=600&h=600&fit=crop",
+  "espresso-coffee-machine":
+    "https://m.media-amazon.com/images/I/81ABm7+MerL._AC_SL1500_.jpg",
+  "memory-foam-mattress":
+    "https://i5.walmartimages.com/seo/Mellow-4-5-Zone-Cooling-Gel-Memory-Foam-Mattress-Topper-Twin_87485f0f-41e6-4b30-8390-8c4230b1e6b0.7dd2d21f40f5b0c1623001697c8eb859.jpeg",
+  "adjustable-dumbbell-set":
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=600&fit=crop",
+  "olympic-barbell-set":
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop",
+  "whey-protein-isolate-5lb":
+    "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=600&h=600&fit=crop",
+  "smart-fitness-watch":
+    "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=600&h=600&fit=crop",
+  "premium-basmati-rice-10kg":
+    "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=600&h=600&fit=crop",
+  "organic-red-lentils-2kg":
+    "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=600&h=600&fit=crop",
+  "natural-peanut-butter-1kg":
+    "https://images.unsplash.com/photo-1654747781278-3aff38f76b0e?w=600&h=600&fit=crop",
+  "extra-virgin-olive-oil-1l":
+    "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&h=600&fit=crop",
+  "vitamin-c-face-serum":
+    "https://images.unsplash.com/photo-1571781926291-c7776e40e5ed?w=600&h=600&fit=crop",
+  "sonic-electric-toothbrush":
+    "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=600&h=600&fit=crop",
+  "ionic-hair-dryer":
+    "https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600&h=600&fit=crop",
+  "luxury-eau-de-parfum":
+    "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&h=600&fit=crop",
+  "organic-body-lotion":
+    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop",
+  "hardcover-bestseller-novel":
+    "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&h=600&fit=crop",
+  "leather-journal-notebook":
+    "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=600&h=600&fit=crop",
+  "vinyl-record-player":
+    "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=600&h=600&fit=crop",
+  "bluetooth-bookshelf-speakers":
+    "https://images.unsplash.com/photo-1545454675-3531b294ca82?w=600&h=600&fit=crop",
+  "led-desk-reading-lamp":
+    "https://images.unsplash.com/photo-1507473880760-e72add245b70?w=600&h=600&fit=crop",
+  "wooden-building-blocks":
+    "https://images.unsplash.com/photo-1515488044360-fb630310799b?w=600&h=600&fit=crop",
+  "strategy-board-game":
+    "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=600&h=600&fit=crop",
+  "remote-control-car":
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop",
+  "plush-teddy-bear":
+    "https://images.unsplash.com/photo-1556015048-4d3aa10df74c?w=600&h=600&fit=crop",
+  "1000-piece-jigsaw-puzzle":
+    "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&h=600&fit=crop",
+  "premium-dog-food-10kg":
+    "https://images.unsplash.com/photo-1589924691995-400dc9df89dd?w=600&h=600&fit=crop",
+  "cat-scratching-tower":
+    "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=600&fit=crop",
+  "pet-grooming-kit":
+    "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600&h=600&fit=crop",
+  "automatic-pet-feeder":
+    "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=600&fit=crop",
+  "orthopedic-dog-bed":
+    "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop",
+  ...extraImages,
+  ...extraImages2,
+  "anker-power-bank-20000":
+    "https://m.media-amazon.com/images/I/61wCSfVLG9L._AC_.jpg",
+  "wireless-charging-pad":
+    "https://www.cyprusemall.com.cy/wp-content/uploads/2022/05/51UMb1M-lnL._AC_SL1000_f2dd8b1f-f2df-4d73-9387-275ff9224dc7.jpg",
+  "apple-magic-trackpad":
+    "https://www.blessthisstuff.com/imagens/listagem/2010/grande/grande_img_apple_magic_trackpad.jpg",
+  "lg-27-ultragear-monitor":
+    "https://www.lg.com/content/dam/channel/wcms/sg/products/monitor-pc/consumer-monitors/uhd-4k/27us500-w/gallery/ultrafine-27us500-gallery-01.jpg/_jcr_content/renditions/thum-1600x1062.jpeg",
+  "razer-deathadder-v3":
+    "https://cdn.mos.cms.futurecdn.net/kJMZaWmLVpVGmZndGwtU9m.jpeg",
+  "samsung-t9-ssd-2tb":
+    "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6559/6559267cv19d.jpg;maxHeight=1920;maxWidth=900?format=webp",
+  "hp-laserjet-printer":
+    "https://www.hp.com/content/dam/sites/worldwide/printers/home-laser-printers/100_series_Click-to-shop_Desktop@2x.jpg",
+  "elgato-stream-deck-mk2":
+    "https://vivre-motion.com/cdn/shop/files/stream_deck_xl_cc11fb7f-248e-4a4d-8483-10eebb4d438b_1780x.jpg?v=1670670152",
+  "wacom-intuos-tablet":
+    "https://cdn.mos.cms.futurecdn.net/fqCr7jEQkx2yFppHopGUPB.jpg",
+  "kindle-paperwhite-16gb":
+    "https://assets-prd.ignimgs.com/2025/02/10/61mdbbosel-ac-sl1500-1739220373861.jpg",
+  "silk-scarf-printed":
+    "https://jegallery.co.uk/wp-content/uploads/2018/05/Chinoiserie-Floral-Silk-Scarf-Gray-2.jpg",
+  "cashmere-beanie":
+    "https://slipintosoft.com/cdn/shop/files/cashmere-beanie-ribbed-cuff-winter-pure-cashmere-knit-cap-cashmere-hat-1713007.jpg?v=1758094377",
+  "ceramic-table-lamp":
+    "https://a.1stdibscdn.com/gilt-porcelain-vintage-yellow-round-table-lamp-for-sale-picture-5/f_66512/f_360044421693734209264/DSC09333_master.JPG",
+  "weighted-blanket-15lb":
+    "https://www.brylanehome.com/on/demandware.static/-/Sites-masterCatalog_BrylaneHome/default/dw49b6699e/images/hi-res/1593_09061_mc_0271.jpg",
+  "bamboo-cutting-board":
+    "https://www.decorsnob.com/wp-content/uploads/Totally-Bamboo-Original-Bamboo-Cutting-Serving-Board-3-Piece-Set-.jpg",
+  "cast-iron-skillet-12":
+    "https://cb.scene7.com/is/image/Crate/LodgeBlacklock10p25SkilletSSS22/$web_plp_card_hires$/240201125455/lodge-blacklock-10.25-seasoned-cast-iron-skillet.jpg",
+  "essential-oil-diffuser":
+    "https://ae01.alicdn.com/kf/HTB1fy2_XOLxK1Rjy0Ffq6zYdVXas/400ml-Air-Humidifier-Essential-Oil-Diffuser-Aroma-Lamp-Aromatherapy-Electric-Aroma-Diffuser-Mist-Maker-for-Home.jpg",
+  "egyptian-cotton-towels":
+    "https://ak1.ostkcdn.com/images/products/is/images/direct/84f9ff6e8c576f242412bc86580e237856304a46/Superior-Heritage-Egyptian-Cotton-Heavyweight-Bathroom-Towel---Set-of-9.jpg",
+  "succulent-planter-set":
+    "https://engledow.com/wp-content/uploads/2014/10/succulents.jpg",
+  "french-press-coffee-1l":
+    "https://m.media-amazon.com/images/I/612v19vtE8L.jpg",
+};
+
+const categoryImages = {
+  electronics:
+    "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&h=400&fit=crop",
+  "computers-accessories":
+    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=400&fit=crop",
+  fashion:
+    "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=400&fit=crop",
+  "home-kitchen":
+    "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&h=400&fit=crop",
+  fitness:
+    "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&h=400&fit=crop",
+  grocery:
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=400&fit=crop",
+  beauty:
+    "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&h=400&fit=crop",
+  "books-media":
+    "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&h=400&fit=crop",
+  "toys-games":
+    "https://images.unsplash.com/photo-1515488044360-fb630310799b?w=800&h=400&fit=crop",
+  "pet-supplies":
+    "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=400&fit=crop",
+  "sports-outdoors":
+    "https://images.unsplash.com/photo-1461896836934-ffe607ba6851?w=800&h=400&fit=crop",
+  automotive:
+    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&h=400&fit=crop",
+  baby:
+    "https://images.unsplash.com/photo-1515488044360-fb630310799b?w=800&h=400&fit=crop",
+  office:
+    "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=800&h=400&fit=crop",
+  garden:
+    "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=400&fit=crop",
+  travel:
+    "https://images.unsplash.com/photo-1436491913312-96e012612c16?w=800&h=400&fit=crop",
+};
+
+export function getProductImage(productId) {
+  return (
+    productImages[productId] ||
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop"
+  );
+}
+
+export function getCategoryImage(categoryId) {
+  return (
+    categoryImages[categoryId] ||
+    "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=400&fit=crop"
+  );
+}
+
+export { productImages, categoryImages };

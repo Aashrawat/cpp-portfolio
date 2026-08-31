@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+.git
+.github
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+k8s/secret.yaml
+README.md
