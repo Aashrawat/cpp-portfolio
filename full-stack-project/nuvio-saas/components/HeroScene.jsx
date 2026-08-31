@@ -25,49 +25,49 @@ function getSceneLayout(width, height, variant) {
 
   if (width < 400) {
     return {
-      cameraZ: 8.4,
+      cameraZ: 6.6,
       cameraX: 0,
-      lookAt: [0, -0.4, 0],
-      fov: 54,
-      globePosition: [0, -1.15, 0],
-      globeScale: 0.48,
-      pointSize: 0.013,
+      lookAt: [0, 0, 0],
+      fov: 46,
+      globePosition: [0, -0.05, 0],
+      globeScale: 0.56,
+      pointSize: 0.012,
     };
   }
 
   if (width < 520) {
     return {
-      cameraZ: 7.8,
+      cameraZ: 6.5,
       cameraX: 0,
-      lookAt: [0, -0.3, 0],
-      fov: 50,
-      globePosition: [0, -0.95, 0],
-      globeScale: 0.54,
-      pointSize: 0.014,
+      lookAt: [0, 0, 0],
+      fov: 45,
+      globePosition: [0, -0.05, 0],
+      globeScale: 0.58,
+      pointSize: 0.013,
     };
   }
 
   if (width < 768) {
     return {
-      cameraZ: 7.1,
+      cameraZ: 6.4,
       cameraX: 0,
-      lookAt: [0, -0.15, 0],
-      fov: 46,
-      globePosition: [0, -0.65, 0],
-      globeScale: 0.62,
-      pointSize: 0.015,
+      lookAt: [0, 0, 0],
+      fov: 44,
+      globePosition: [0, 0, 0],
+      globeScale: 0.6,
+      pointSize: 0.014,
     };
   }
 
   if (width < 900) {
     return {
-      cameraZ: 6.5,
-      cameraX: 0.1,
-      lookAt: [0.15, -0.05, 0],
+      cameraZ: 6.3,
+      cameraX: 0,
+      lookAt: [0, 0, 0],
       fov: 44,
-      globePosition: [0.35, -0.45, 0],
-      globeScale: 0.72,
-      pointSize: 0.016,
+      globePosition: [0, 0, 0],
+      globeScale: 0.62,
+      pointSize: 0.014,
     };
   }
 
