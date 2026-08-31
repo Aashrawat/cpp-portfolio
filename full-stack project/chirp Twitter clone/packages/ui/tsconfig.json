@@ -1,8 +1,0 @@
-{
-	"extends": "../../tooling/typescript/tsconfig.react.json",
-	"include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts"],
-	"compilerOptions": {
-		"outDir": "./dist",
-		"types": ["vitest/globals", "@testing-library/jest-dom"]
-	}
-}
