@@ -24,15 +24,16 @@ function getSceneLayout(width, height, variant) {
   }
 
   if (width < 900) {
-    const scale = Math.min(0.64, Math.max(0.5, width / 640));
+    const vmin = Math.min(width, height);
+    const scale = Math.min(1.02, Math.max(0.82, vmin / 420));
     return {
-      cameraZ: 6.9,
+      cameraZ: 7.4,
       cameraX: 0,
       lookAt: [0, 0, 0],
-      fov: 48,
+      fov: 50,
       globePosition: [0, 0, 0],
       globeScale: scale,
-      pointSize: 0.015,
+      pointSize: 0.016,
     };
   }
 

@@ -335,8 +335,8 @@ a {
     height: auto;
     opacity: 1;
     background: radial-gradient(
-      ellipse 72% 52% at 50% 50%,
-      rgba(40, 100, 180, 0.34),
+      ellipse 85% 62% at 50% 52%,
+      rgba(40, 100, 180, 0.36),
       transparent 68%
     );
     -webkit-mask-image: none;
@@ -390,16 +390,6 @@ a {
   .hero-3d__welcome {
     font-size: clamp(1rem, 3.2vw, 1.2rem);
     min-height: 2.2rem;
-  }
-}
-
-@media (max-width: 519px) {
-  .hero-3d__scene {
-    background: radial-gradient(
-      ellipse 78% 48% at 50% 52%,
-      rgba(40, 100, 180, 0.32),
-      transparent 70%
-    );
   }
 }
 
