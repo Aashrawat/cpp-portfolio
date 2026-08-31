@@ -6,6 +6,108 @@ import { createContext, useContext, useMemo, useRef, useEffect } from "react";
 import * as THREE from "three";
 
 const SceneVariantContext = createContext("home");
+const SceneLayoutContext = createContext(null);
+
+function getSceneLayout(width, height, variant) {
+  const isAuth = variant === "auth";
+
+  if (isAuth) {
+    return {
+      cameraZ: 5.6,
+      cameraX: 0,
+      lookAt: [0, 0.05, 0],
+      fov: 42,
+      globePosition: [0, 0.2, 0],
+      globeScale: 0.92,
+      pointSize: 0.018,
+    };
+  }
+
+  if (width < 400) {
+    return {
+      cameraZ: 8.4,
+      cameraX: 0,
+      lookAt: [0, -0.4, 0],
+      fov: 54,
+      globePosition: [0, -1.15, 0],
+      globeScale: 0.48,
+      pointSize: 0.013,
+    };
+  }
+
+  if (width < 520) {
+    return {
+      cameraZ: 7.8,
+      cameraX: 0,
+      lookAt: [0, -0.3, 0],
+      fov: 50,
+      globePosition: [0, -0.95, 0],
+      globeScale: 0.54,
+      pointSize: 0.014,
+    };
+  }
+
+  if (width < 768) {
+    return {
+      cameraZ: 7.1,
+      cameraX: 0,
+      lookAt: [0, -0.15, 0],
+      fov: 46,
+      globePosition: [0, -0.65, 0],
+      globeScale: 0.62,
+      pointSize: 0.015,
+    };
+  }
+
+  if (width < 900) {
+    return {
+      cameraZ: 6.5,
+      cameraX: 0.1,
+      lookAt: [0.15, -0.05, 0],
+      fov: 44,
+      globePosition: [0.35, -0.45, 0],
+      globeScale: 0.72,
+      pointSize: 0.016,
+    };
+  }
+
+  const tall = height > width * 1.1;
+  if (tall && width < 1200) {
+    return {
+      cameraZ: 6.2,
+      cameraX: -0.35,
+      lookAt: [1.1, 0, 0],
+      fov: 42,
+      globePosition: [1.55, -0.15, 0],
+      globeScale: 0.88,
+      pointSize: 0.017,
+    };
+  }
+
+  return {
+    cameraZ: 5.35,
+    cameraX: -0.75,
+    lookAt: [1.55, 0, 0],
+    fov: 42,
+    globePosition: [2.15, 0, 0],
+    globeScale: 1.08,
+    pointSize: 0.018,
+  };
+}
+
+function SceneLayoutProvider({ variant, children }) {
+  const { size } = useThree();
+  const layout = useMemo(
+    () => getSceneLayout(size.width, size.height, variant),
+    [size.width, size.height, variant]
+  );
+
+  return (
+    <SceneLayoutContext.Provider value={layout}>
+      {children}
+    </SceneLayoutContext.Provider>
+  );
+}
 
 function latLonToVec3(lat, lon, radius) {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -205,6 +307,9 @@ function buildLandPositions(radius, latStep = 1.15, lonStep = 1.15) {
 const CACHED_LAND = buildLandPositions(1.65);
 
 function PointGlobe() {
+  const layout = useContext(SceneLayoutContext);
+  const pointSize = layout?.pointSize ?? 0.018;
+
   return (
     <points>
       <bufferGeometry>
@@ -215,7 +320,7 @@ function PointGlobe() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.018}
+        size={pointSize}
         color="#e8f1ff"
         sizeAttenuation
         transparent
@@ -326,19 +431,22 @@ function Arcs({ radius = 1.66 }) {
 }
 
 function ResponsiveCamera() {
-  const { camera, size } = useThree();
-  const variant = useContext(SceneVariantContext);
-  const isAuth = variant === "auth";
+  const { camera } = useThree();
+  const layout = useContext(SceneLayoutContext);
 
   useFrame(() => {
-    const isMobile = size.width < 900;
-    const targetZ = isAuth ? 5.6 : isMobile ? 6.4 : 5.35;
-    const targetX = isAuth ? 0 : isMobile ? 0 : -0.75;
-    const lookX = isAuth ? 0 : isMobile ? 0.5 : 1.55;
-    const lookY = isAuth ? 0.05 : 0;
-    camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.08);
-    camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetX, 0.08);
-    camera.lookAt(lookX, lookY, 0);
+    if (!layout) return;
+
+    const { cameraZ, cameraX, lookAt: look, fov } = layout;
+
+    if ("fov" in camera && camera.fov !== fov) {
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+    }
+
+    camera.position.z = THREE.MathUtils.lerp(camera.position.z, cameraZ, 0.08);
+    camera.position.x = THREE.MathUtils.lerp(camera.position.x, cameraX, 0.08);
+    camera.lookAt(look[0], look[1], look[2]);
   });
 
   return null;
@@ -346,10 +454,8 @@ function ResponsiveCamera() {
 
 function GlobeGroup() {
   const group = useRef(null);
-  const { size, gl } = useThree();
-  const variant = useContext(SceneVariantContext);
-  const isAuth = variant === "auth";
-  const isMobile = size.width < 900;
+  const { gl } = useThree();
+  const layout = useContext(SceneLayoutContext);
   const drag = useRef({
     active: false,
     prevX: 0,
@@ -425,12 +531,8 @@ function GlobeGroup() {
     group.current.rotation.x = d.rotX;
   });
 
-  const position = isAuth
-    ? [0, 0.2, 0]
-    : isMobile
-      ? [0.95, -0.5, 0]
-      : [2.15, 0, 0];
-  const scale = isAuth ? 0.92 : isMobile ? 0.95 : 1.08;
+  const position = layout?.globePosition ?? [2.15, 0, 0];
+  const scale = layout?.globeScale ?? 1.08;
 
   return (
     <group ref={group} position={position} scale={scale}>
@@ -443,34 +545,41 @@ function GlobeGroup() {
 }
 
 export default function HeroScene({ variant = "home" }) {
+  const initialLayout = getSceneLayout(
+    typeof window !== "undefined" ? window.innerWidth : 1200,
+    typeof window !== "undefined" ? window.innerHeight : 800,
+    variant
+  );
+
   return (
     <Canvas
       camera={{
-        position: variant === "auth" ? [0, 0.15, 5.6] : [0, 0.15, 5.2],
-        fov: 42,
+        position: [0, 0.15, initialLayout.cameraZ],
+        fov: initialLayout.fov,
       }}
-      dpr={[1, 1.25]}
+      dpr={[1, Math.min(2, typeof window !== "undefined" ? window.devicePixelRatio : 1.25)]}
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
-      className="!absolute inset-0 h-full w-full"
-      style={{ width: "100%", height: "100%" }}
+      className="hero-scene-canvas"
       resize={{ scroll: false, debounce: { scroll: 50, resize: 0 } }}
     >
       <SceneVariantContext.Provider value={variant}>
-        <color attach="background" args={["#040912"]} />
-        <fog attach="fog" args={["#040912", 6, 14]} />
-        <ambientLight intensity={0.45} />
-        <pointLight position={[4, 2, 3]} intensity={1.0} color="#4da3ff" />
-        <Stars
-          radius={40}
-          depth={20}
-          count={variant === "auth" ? 350 : 500}
-          factor={2.5}
-          saturation={0}
-          fade
-          speed={0.3}
-        />
-        <ResponsiveCamera />
-        <GlobeGroup />
+        <SceneLayoutProvider variant={variant}>
+          <color attach="background" args={["#040912"]} />
+          <fog attach="fog" args={["#040912", 6, 14]} />
+          <ambientLight intensity={0.45} />
+          <pointLight position={[4, 2, 3]} intensity={1.0} color="#4da3ff" />
+          <Stars
+            radius={40}
+            depth={20}
+            count={variant === "auth" ? 350 : 500}
+            factor={2.5}
+            saturation={0}
+            fade
+            speed={0.3}
+          />
+          <ResponsiveCamera />
+          <GlobeGroup />
+        </SceneLayoutProvider>
       </SceneVariantContext.Provider>
     </Canvas>
   );

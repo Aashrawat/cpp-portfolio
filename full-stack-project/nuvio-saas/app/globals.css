@@ -309,6 +309,7 @@ a {
   cursor: grab;
   touch-action: none;
   pointer-events: auto;
+  overflow: hidden;
   background: radial-gradient(
     ellipse 55% 50% at 72% 48%,
     rgba(40, 100, 180, 0.3),
@@ -316,14 +317,42 @@ a {
   );
 }
 
+.hero-scene-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
 @media (max-width: 899px) {
   .hero-3d__scene {
-    opacity: 0.6;
+    opacity: 1;
     background: radial-gradient(
-      ellipse 70% 50% at 70% 75%,
-      rgba(40, 100, 180, 0.3),
-      transparent 70%
+      ellipse 88% 42% at 50% 80%,
+      rgba(40, 100, 180, 0.28),
+      transparent 72%
     );
+  }
+
+  .hero-3d__layout {
+    justify-content: flex-start;
+    align-content: start;
+    padding-top: clamp(4.5rem, 11vh, 6rem);
+  }
+}
+
+@media (max-width: 519px) {
+  .hero-3d__scene {
+    background: radial-gradient(
+      ellipse 92% 38% at 50% 84%,
+      rgba(40, 100, 180, 0.24),
+      transparent 74%
+    );
+  }
+
+  .hero-3d__content {
+    max-width: 100%;
   }
 }
 
