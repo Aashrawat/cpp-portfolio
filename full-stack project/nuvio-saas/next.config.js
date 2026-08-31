@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // Standalone is for Docker only. Vercel uses its own output format.
+  ...(process.env.VERCEL ? {} : { output: "standalone" }),
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1660, 1920, 2048, 2560, 3840, 5120, 7680],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512],
