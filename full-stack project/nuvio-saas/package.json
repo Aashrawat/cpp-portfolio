@@ -10,7 +10,7 @@
     "start": "next start -p 8080"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "allowScripts": {
     "sharp": true
